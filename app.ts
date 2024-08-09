@@ -17,6 +17,8 @@ app.use(
   })
 );
 
+app.use(express.static("public"));
+
 app.get(
   "/api/v1/heartbeat",
   (req: Request, res: Response, next: NextFunction) => {
