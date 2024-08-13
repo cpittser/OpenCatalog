@@ -6,6 +6,7 @@ import swaggerSpec from "./api/Swagger";
 import swaggerJsdoc from "swagger-jsdoc";
 import swaggerUi from "swagger-ui-express";
 import { ErrorMiddleware } from "./api/middlewares/Errors";
+import coreRouter from "./api/routes/core.routes";
 
 // body parser
 app.use(express.json({ limit: "50mb" }));
@@ -28,6 +29,8 @@ app.get(
     });
   }
 );
+
+app.use("/api/v1/", coreRouter);
 
 app.use("/", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 app.get("docs.json", (req: Request, res: Response) => {
